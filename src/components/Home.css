@@ -1,0 +1,93 @@
+body {
+    background-color: #261A24;
+    color: #F2F2EB;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.main-button {
+    padding: 10px 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #D95555;
+    color: #F2F2EB;
+    border: 1px solid #F2F2EB;
+}
+
+.fish-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fish-list-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    width: 200px;
+}
+
+.delete-button {
+    background-color: #F2DC9B;
+    color: #261A24;
+    padding: 5px;
+    border: none;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.add-form input {
+    padding: 5px;
+    outline: none;
+}
+
+.add-form button {
+    padding: 5px;
+    background-color: #D95555;
+    color: #F2F2EB;
+    cursor: pointer;
+}
+
+.aquarium-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aquarium-input {
+    padding: 5px;
+    outline: none;
+}
+
+.aquarium-button {
+    padding: 5px;
+    background-color: #D95555;
+    color: #F2F2EB;
+    margin-top: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-green {
+    background-color: green;
+}
+
+.button-red {
+    background-color: red;
+}
