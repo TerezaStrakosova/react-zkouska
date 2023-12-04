@@ -10,8 +10,9 @@ const Home = () => {
     const [listOfFish, setListOfFish] = useState(fish);
     const [valid, setValid] = useState(false);
     const [activeTab, setActiveTab] = useState('list-of-fish');
-    const [buttonColor, setButtonColor] = useState('')
+    const [buttonColor, setButtonColor] = useState('button-red')
     const [validAquarium, setValidAquarium] = useState(false)
+    const [aquaText, setAquaText] = useState("")
 
     const [newAquarium, setNewAquarium] = useState({
         width: "",
@@ -38,24 +39,30 @@ const Home = () => {
                     pocetMalychRyb++
             }
         })
-        console.log("Počet velkých ryb: " + pocetVelkychRyb)
-        console.log("Počet malých ryb: " + pocetMalychRyb)
 
         const totalRequirements = (pocetMalychRyb * 10) + (pocetVelkychRyb * 20)
 
-        if ((newAquarium.height * newAquarium.length * newAquarium.width) >= totalRequirements && (newAquarium.height !== "" && newAquarium.width !== "" && newAquarium.length !=="")) {
+        if ((newAquarium.height * newAquarium.length * newAquarium.width) >= totalRequirements && (newAquarium.height !== "" && newAquarium.width !== "" && newAquarium.length !=="") && totalRequirements != 0) {
             setButtonColor('button-green');
             setValidAquarium(true)
+            setAquaText(`Akvárium je pro rybičky dost velké. Celkový objem tohoto akvária je ${newAquarium.height * newAquarium.length * newAquarium.width} dm³ (${newAquarium.width} dm * ${newAquarium.length} dm * ${newAquarium.height} dm).`)
+        } else if ((newAquarium.height * newAquarium.length * newAquarium.width) >= totalRequirements && (newAquarium.height !== "" && newAquarium.width !== "" && newAquarium.length !=="") && totalRequirements === 0) {
+            setButtonColor('button-green');
+            setValidAquarium(true)
+            setAquaText("")
+        } else if((newAquarium.height * newAquarium.length * newAquarium.width) <= totalRequirements && (newAquarium.height !== "" && newAquarium.width !== "" && newAquarium.length !=="") && totalRequirements != 0) {
+            setButtonColor('button-red');
+            setValidAquarium(false)
+            setAquaText(`Vaše rybičky potřebují akvárium o minimálním objemu ${totalRequirements} dm³, tohle akvárium má pouze ${newAquarium.height * newAquarium.length * newAquarium.width} dm³.`)
         } else {
             setButtonColor('button-red');
             setValidAquarium(false)
+            setAquaText("")
         }
     }, [newAquarium, listOfFish])
 
     const validateData = (validateFish) => {
-        if (validateFish.name.trim().length === 0)
-            return setValid(false);
-        if (validateFish.size.trim().length === 0 || (validateFish.size.toLowerCase() !== "malá" && validateFish.size.toLowerCase() !== "mala" && validateFish.size.toLowerCase() !== "velká" && validateFish.size.toLowerCase() !== "velka" )) 
+        if (validateFish.name.trim().length === 0 || !validateFish.size)
             return setValid(false);
         return setValid(true);
     }
@@ -86,7 +93,9 @@ const Home = () => {
         else {
             alert("Nemůžeš přidat rybku")
         }
+
     }
+    
 
     function handleChange(event) {
         const updateFish = { ...newFish, [event.target.name]: event.target.value };
@@ -114,7 +123,7 @@ const Home = () => {
 
     const updateAquarium = (event) => {
         event.preventDefault()
-        alert("Akvárium je pro rybičky dost velké, takže bylo schváleno.")
+        alert("Akvárium bylo schváleno.")
         setNewAquarium({
             width: "",
             length: "",
@@ -166,13 +175,14 @@ const Home = () => {
                                 onChange={handleChange}
                             />
 
-                            <input
-                                type="text"
-                                placeholder="Druh (malá/velká)"
-                                name='size'
-                                value={newFish.size}
-                                onChange={handleChange}
-                            />
+                            <div>
+                            <p>Velikost rybičky:</p>
+                            <input type="radio" id="mala" name="size" value="Malá" checked={newFish.size === "Malá"} onChange={handleChange}></input>
+                              <label htmlFor='mala'>Malá</label><br />
+                            <input type="radio" id="velka" name="size" value="Velká" checked={newFish.size === "Velká"} onChange={handleChange}></input>
+                              <label htmlFor='velka'>Velká</label><br />
+                            </div>
+                            
 
                             <button
                                 disabled={!valid}
@@ -188,11 +198,12 @@ const Home = () => {
 
             {(activeTab === 'aquarium') &&
                 <>
+                    <p className='aqua-text'>{aquaText}</p>
                     <form className='aquarium-form'>
                         <input className='aquarium-input'
                             type='number'
                             min='0'
-                            placeholder='šířka'
+                            placeholder='šířka (v dm)'
                             name='width'
                             value={newAquarium.width}
                             onChange={handleAquarium}
@@ -201,7 +212,7 @@ const Home = () => {
                         <input className='aquarium-input'
                             type='number'
                             min='0'
-                            placeholder='délka'
+                            placeholder='délka (v dm)'
                             name='length'
                             value={newAquarium.length}
                             onChange={handleAquarium}
@@ -210,7 +221,7 @@ const Home = () => {
                         <input className='aquarium-input'
                             type='number'
                             min='0'
-                            placeholder='výška'
+                            placeholder='výška (v dm)'
                             name='height'
                             value={newAquarium.height}
                             onChange={handleAquarium}

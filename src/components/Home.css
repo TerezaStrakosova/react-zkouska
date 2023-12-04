@@ -1,22 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #261A24;
+    background-color: #042940;
     color: #F2F2EB;
 }
 
 .buttons {
+    width: 400px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 20px 0;
+    align-items: center;
+    margin: 30px auto;
 }
 
 .main-button {
-    padding: 10px 5px;
-    margin-left: 10px;
+    padding: 25px 30px;
+    margin-right: 20px;
     cursor: pointer;
-    background-color: #D95555;
+    background-color: #005C53;
     color: #F2F2EB;
     border: 1px solid #F2F2EB;
+    font-size: 25px;
+    transition: all linear 0.3s;
+}
+
+.main-button:hover {
+    background-color: #9fc131bc; 
 }
 
 .fish-list {
@@ -31,36 +45,58 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 5px;
-    width: 200px;
+    margin: 10px;
+    width: 305px;
+    font-size: 20px;
 }
 
 .delete-button {
-    background-color: #F2DC9B;
+    background-color: #D6D58E;
     color: #261A24;
-    padding: 5px;
+    padding: 5px 10px;
     border: none;
 }
 
 .add-form {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-
+    flex-direction: column;
+    margin-top: 15px;
 }
 
 .add-form input {
-    padding: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
     outline: none;
 }
 
+.add-form p {
+    font-size: 20px;
+    margin: 15px auto 10px auto;
+}
+
+.add-form input[type=radio]{
+   width: 12px ;
+}
+
+.add-form label {
+    font-size: 18px;
+}
+
 .add-form button {
-    padding: 5px;
-    background-color: #D95555;
+    padding: 10px;
+    width: 165px;
+    font-size: 20px;
+    background-color: #005C53;
     color: #F2F2EB;
     cursor: pointer;
+    margin: 20px auto;
+    border: 1px solid #F2F2EB;
+}
+
+.aqua-text {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
 }
 
 .aquarium-form {
@@ -71,23 +107,26 @@ body {
 }
 
 .aquarium-input {
-    padding: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
     outline: none;
 }
 
 .aquarium-button {
-    padding: 5px;
-    background-color: #D95555;
+    padding: 10px;
+    width: 200px;
+    font-size: 20px;
+    background-color: #005C53;
     color: #F2F2EB;
-    margin-top: 5px;
-    border: none;
     cursor: pointer;
+    margin: 20px auto;
+    border: 1px solid #F2F2EB;
 }
 
 .button-green {
-    background-color: green;
+    background-color: #9fc131bc;
 }
 
 .button-red {
-    background-color: red;
+    background-color: rgb(191, 41, 41);
 }
